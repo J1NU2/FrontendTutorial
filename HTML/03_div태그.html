@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    /* 순서를 기억, 선택(선택자)하고 스타일 적용 */
+    body {          /* 선택자 : 태그 */
+        background-color: aquamarine;
+        width: 1024px;
+    }
+    #header {       /* 선택자 : 태그에 지정된 아이디 */
+        background-color: darkcyan;
+        width: 1024px;
+        height: 100px;
+    }
+    #nav {
+        background-color: cornflowerblue;
+        width: 1024px;
+        height: 50px;
+    }
+    .section {      /* 선택자 : 태그에 지정된 클래스 */
+        background-color: skyblue;
+        width: 400px;
+        height: 150px;
+        float: left;
+        /* display: inline-flex; */
+    }
+</style>
+<body>
+    <!-- id는 무조건 유니크한 속성을 지녀야 한다. -->
+    <!-- 오류는 발생하지 않지만, JS 작업 시 문제가 발생할 수 있다. -->
+    <div id="header"></div>
+    <div id="nav">
+        [home] [여기는] [네비게이션] [입니다] [게시판]
+    </div>
+    <div class="section"> type1 </div>
+    <div class="section"> type2 </div>
+    <h1>반갑고</h1>
+</body>
+</html>

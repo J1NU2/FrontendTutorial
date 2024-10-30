@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>div Answer</title>
+</head>
+<style>
+    body {
+        background-color: aquamarine;
+        width: 1024px;
+        display: grid;
+        align-items: center;
+        text-align: center;
+    }
+    header {
+        background-color: darkcyan;
+        width: 1024px;
+        padding: 30px 0;
+    }
+    header div {
+        display: inline-flex;
+        align-items: center;
+    }
+    nav {
+        background-color: cornflowerblue;
+        width: 1024px;
+        height: 60px;
+        padding: 10px 0;
+    }
+    nav > ul > li {
+        background-color: aqua;
+        line-height: 30px;
+        margin-left: 20px;
+        float: left;
+        text-align: center;
+        list-style: none;
+    }
+    nav a {
+        width: 150px;
+        display: block;
+        text-decoration: none;
+    }
+    section {
+        background-color: green;
+        width: 1024px;
+        float: left;
+    }
+    .first {
+        background-color: skyblue;
+        margin: 10px 0;
+        display: inline-flex;
+    }
+    .first_one, .first_two {
+        padding: 20px 50px;
+    }
+    .input_div {
+        height: 40px;
+        display: inline-flex;
+        align-items: center;
+        flex-direction: row;
+    }
+    .input_div > h3 {
+        width: 100px;
+    }
+    .input_div > input {
+        height: 25px;
+    }
+    .btn_div {
+        float: right;
+    }
+    .second {
+        background-color: lightskyblue;
+        margin: 10px 0;
+        display: inline-flex;
+    }
+    .content_div {
+        background-color: lightskyblue;
+        width: 900px;
+        margin: 20px;
+        display: flex;
+        align-items: center;
+        text-align: center;
+    }
+    .second p {
+        background-color: white;
+        width: 300px;
+        height: 250px;
+        margin: 0 10px;
+    }
+    footer {
+        background-color: yellow;
+    }
+    input {
+        height: 25px;
+    }
+    button {
+        padding: 5px 15px;
+    }
+</style>
+<body>
+    <header>
+        <!-- <p>header 태그</p> -->
+        <div>
+            <input type="text">
+            <button style="margin-left: 10px;">검색</button>
+        </div>
+    </header>
+    <nav>
+        <!-- <p>nav 태그</p> -->
+        <ul>
+            <li><a href="#">메뉴1</a></li>
+            <li><a href="#">메뉴2</a></li>
+            <li><a href="#">메뉴3</a></li>
+        </ul>
+    </nav>
+    <section>
+        <!-- <p>section 태그</p> -->
+        <div class="first">
+            <!-- <p>첫번째 구역</p> -->
+            <div class="first_one">
+                <img src="img/과제.PNG" style="width: 550px; height: 300px;">
+            </div>
+            <div class="first_two">
+                <!-- <p>아이디 및 패스워드</p> -->
+                <div class="login_input">
+                    <div class="input_div">
+                        <h3>아이디</h3>
+                        <input type="text">
+                    </div>
+                    <div class="input_div">
+                        <h3>패스워드</h3>
+                        <input type="text">
+                    </div>
+                </div>
+                <div class="btn_div">
+                    <button style="margin: 5px 3px 0 0;">로그인</button>
+                </div>
+            </div>
+        </div>
+        <div class="second">
+            <!-- <p>두번째 구역</p> -->
+            <div class="content_div">
+                <p>1번</p>
+                <p>2번</p>
+                <p>3번</p>
+            </div>
+        </div>
+    </section>
+    <footer>
+        <p>footer 태그</p>
+    </footer>
+</body>
+</html>
