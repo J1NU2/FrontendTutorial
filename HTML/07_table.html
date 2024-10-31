@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    table {
+        width: 500px;
+        height: 300px;
+        /* border: 1px solid black; */
+    }
+    tr, th, td {
+        border: 1px solid black;
+    }
+    th {
+        background-color: skyblue;
+    }
+    th:hover {
+        background-color: cornflowerblue;
+    }
+    td {
+        text-align: center;
+    }
+</style>
+<body>
+    <!-- table태그 -->
+    <!-- 1. row : <tr> -->
+    <!-- 2. column : <td> -->
+    <!-- 3. row를 합치는 것 : rowspan -->
+    <!-- 4. col을 합치는 것 : colspan -->
+    <table>
+        <tr>
+            <th>번호</th>
+            <th>이름</th>
+            <th>지갑</th>
+            <th>설명</th>
+            <th>비고</th>
+        </tr>
+        <tr>
+            <td rowspan="2">1</td>
+            <td>김씨</td>
+            <td>1000</td>
+            <td>김씨입니다</td>
+            <td>짠</td>
+        </tr>
+        <tr>
+            <td>김씨</td>
+            <td>1000</td>
+            <td colspan="2">김씨입니다</td>
+        </tr>
+    </table>
+    <!-- 로그인 테이블 -->
+    <table>
+        <tr>
+            <td colspan="2">회원가입</td>
+        </tr>
+        <tr>
+            <td>ID</td>
+            <td><input type="text"></td>
+        </tr>
+        <tr>
+            <td>PASSWORD</td>
+            <td><input type="password"></td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <input type="button" value="가입">
+                <input type="submit" value="로그인">
+            </td>
+        </tr>
+    </table>
+</body>
+</html>
