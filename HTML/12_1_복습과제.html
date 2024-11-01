@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body {
+        margin: 50px;
+    }
+    #menu {
+        color: blue;
+    }
+</style>
+<body>
+    <div>
+        <h1 id="menu">오늘의 메뉴</h1>
+        <form action="" method="">
+            <input type="button" id="btn1" value="버튼1">
+            <input type="button" id="btn2" value="버튼2">
+            <input type="text" id="text">
+        </form>
+        <span id="thank"></span>
+    </div>
+</body>
+</html>
+<script>
+    // 1번 방식, 콜백함수
+    document.getElementById("btn1").addEventListener("click", menu);
+    function menu() {
+        let text = document.getElementById("text").value;
+        // console.log(text);      // 중간점검(디버깅)
+        let menu = document.getElementById("menu");
+        // console.log(menu);      // 중간점검(디버깅)
+        menu.innerHTML = text;
+    }
+
+    // 2번 방식, 람다식
+    document.getElementById("btn2").addEventListener("click", () => {
+        let thank = document.getElementById("thank");
+        // console.log(thank);     // 중간점검(디버깅)
+        thank.innerHTML = "수고하셨습니다."
+    });
+</script>
