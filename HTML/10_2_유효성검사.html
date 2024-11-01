@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>유효성 검사</title>
+</head>
+<body>
+    <!-- 아이디/비밀번호 유효성 검사 JS 처리 순서
+        1. 아이디에 입력된 값을 가져온다.
+        2. 비밀번호에 입력된 값을 가져온다.
+            → 어떤 기술을 사용해서 값을 가져올 것인가?
+                : document.getElementById
+                : document.querySelector        ...등등
+        3. 아이디가 8글자 이상인지 판별한다.
+        4. 비밀번호가 4글자 이상인지 판별한다.
+            → 자료형과 조건문을 생각한다.
+                : 아이디/비밀번호에 입력된 값이 어떤 자료형인가?
+                    Object? String? int(Number)?
+                : 조건문으로 어떻게 판별할 것인가?
+                    아이디는 8글자, 비밀번호는 4글자 이상 -->
+    
+    <h1>유효성 검사하기</h1>
+    <h3>아이디는 8글자 이상, 비밀번호는 4글자 이상</h3>
+    <h3>체크를 눌렀을 때 맞으면 성공, 아니면 실패</h3>
+    <form action="" method="">
+        <input type="text" id="input_id" placeholder="ID">
+        <input type="text" id="input_pwd" placeholder="Password">
+        <input type="button" value="체크" onclick="check()">
+    </form>
+    <div class="check">
+        <div>
+            <span>여부 : </span><span id="effectiveness">(성공or실패)</span>
+        </div>
+        <div class="id_pwd_text">
+            <span>아이디 : </span><span id="id"></span><br>
+            <span>비밀번호 : </span><span id="pwd"></span>
+        </div>
+
+        <table>
+            <tr>
+                <th colspan="2">
+                    성공여부 : <span id="effectiveness">(성공or실패)</span>
+                </th>
+            </tr>
+            <tr>
+                <td>아이디</td>
+                <td><input type="text" id="input_id" placeholder="ID"></td>
+            </tr>
+            <tr>
+                <td>비밀번호</td>
+                <td><input type="password" id="input_pwd" placeholder="Password"></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <input type="button" value="체크" onclick="check()">
+                </td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>
+<style>
+    .check, .id_pwd_text {
+        margin-top: 10px;
+    }
+    table {
+        width: 500px;
+        height: 300px;
+        margin-top: 15px;
+    }
+    table, tr, th, td {
+        border: 1px solid black;
+    }
+    td {
+        text-align: center;
+    }
+</style>
+<script>
+    function check() {
+        var input_id = document.getElementById("input_id").value;
+        var input_pwd = document.getElementById("input_pwd").value;
+        
+        var text = document.getElementById("effectiveness");
+
+        var id = document.querySelector("#id");
+        var pwd = document.querySelector("#pwd");
+
+        id.innerText = input_id;
+        pwd.innerText = input_pwd;
+
+        if (input_id.length >= 8 && input_pwd.length >= 4) {
+            text.innerText = "성공";
+            text.style.color = "green";
+        } else {
+            text.innerText = "실패";
+            text.style.color = "red";
+        }
+    }
+</script>
