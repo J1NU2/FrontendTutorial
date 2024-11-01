@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>계산기</title>
+</head>
+<body>
+    <!-- 계산기 프로그램 JS 처리 순서
+        1. 키를 클릭하면 타입이 text인 input태그에 수식이 만들어진다.
+            1-1. 키를 클릭하면 JS 호출(함수 호출)
+            1-2. 호출된 함수는 키의 값을 가져온다.
+                키를 눌렸을 때 수식에 추가되는 형태는 똑같으니 클릭된 키의 값만 입력하고 싶다.
+                현재 클릭된 키의 값을 어떻게 가져올까?
+                    → this.value를 파라미터로 넘겨준다.
+            1-3. 호출되면서 넘겨받은 파라미터로 text 수식을 완성시킨다.
+        2. 수식 입력이 끝나고 '='를 클릭하면 수식을 계산한다.
+            어떤 기술을 이용하여 수식 계산을 할 것인가?
+                → eval함수를 이용하여 수식을 계산한다. -->
+    
+    <form action="" method="">
+        <div class="input_text">
+            <input type="text" id="calculation" value="" disabled>
+        </div>
+        <div class="button_box">
+            <input type="button" id="seven" class="others" value="7" onclick="input_Btn(this.value)">
+            <input type="button" id="eight" class="others" value="8" onclick="input_Btn(this.value)">
+            <input type="button" id="nine" class="others" value="9" onclick="input_Btn(this.value)">
+            <input type="button" id="sub" class="others" value="-" onclick="input_Btn(this.value)">
+        </div>
+        <div class="button_box">
+            <input type="button" id="four" class="others" value="4" onclick="input_Btn(this.value)">
+            <input type="button" id="five" class="others" value="5" onclick="input_Btn(this.value)">
+            <input type="button" id="six" class="others" value="6" onclick="input_Btn(this.value)">
+            <input type="button" id="add" class="others" value="+" onclick="input_Btn(this.value)">
+        </div>
+        <div class="button_box">
+            <input type="button" id="one" class="others" value="1" onclick="input_Btn(this.value)">
+            <input type="button" id="two" class="others" value="2" onclick="input_Btn(this.value)">
+            <input type="button" id="three" class="others" value="3" onclick="input_Btn(this.value)">
+            <input type="button" id="mul" class="others" value="*" onclick="input_Btn(this.value)">
+        </div>
+        <div class="button_box">
+            <input type="button" id="clear" class="others" value="C" onclick="clear_Btn()">
+            <input type="button" id="zero" class="others" value="0" onclick="input_Btn(this.value)">
+            <input type="button" id="equal" class="others" value="=" onclick="equal_Btn()">
+            <input type="button" id="div" class="others" value="/" onclick="input_Btn(this.value)">
+        </div>
+    </form>
+    <div class="text">
+        <span>계산식 : </span><span id="formula">-</span><br>
+        <span>계산값 : </span><span id="total">-</span>
+    </div>
+</body>
+</html>
+<style>
+    body {
+        padding: 20px;
+    }
+    form {
+        width: 317px;
+        height: 350px;
+        border: 1px solid black;
+        padding: 10px;
+        padding-right: 0;
+    }
+    .input_text input {
+        width: 300px;
+        height: 40px;
+        margin-bottom: 15px;
+    }
+    .button_box {
+        margin-bottom: 10px;
+    }
+    .others {
+        font-size: 30px;
+        width: 65px;
+        height: 65px;
+        margin-right: 10px;
+    }
+    /* #zero {
+        font-size: 30px;
+        width: 145.5px;
+        height: 65px;
+        margin-right: 10px;
+    } */
+    .text {
+        margin-top: 15px;
+    }
+</style>
+<script>
+    const cal_field = document.getElementById("calculation");
+    const formula_text = document.getElementById("formula");
+    const total_text = document.querySelector("#total");
+    
+    function input_Btn(val) {
+        let cal_val = cal_field.value;
+        
+        if (cal_val.length == 0 && (val == "-" || val == "+" || val == "*" || val == "/")) {
+            cal_field.value = 0 + val;
+            return;
+        }
+        
+        let last = cal_field.value.charAt(cal_val.length - 1);
+        
+        if ((val == "-" || val == "+" || val == "*" || val == "/")) {
+            if (last == "-" || last == "+" || last == "*" || last == "/") {
+                cal_field.value = cal_val.slice(0, -1);
+                cal_field.value += val;
+                return;
+            }
+        }
+
+        cal_field.value += val;
+    }
+    
+    function clear_Btn() {
+        formula_text.innerText = "-";
+        total_text.innerText = "-";
+        cal_field.value = "";
+    }
+    
+    function equal_Btn() {
+        let cal_val = cal_field.value;
+        let last = cal_field.value.charAt(cal_val.length - 1);
+
+        if (last == "-" || last == "+" || last == "*" || last == "/") {
+            cal_field.value += 0;
+        }
+
+        let formula_text = document.getElementById("formula");
+        let total_text = document.querySelector("#total");
+        let total = eval(cal_field.value);
+
+        formula_text.innerText = cal_field.value;
+        total_text.innerText = total;
+
+        cal_field.value = "";
+    }
+</script>
