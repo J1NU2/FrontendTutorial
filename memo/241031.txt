@@ -1,0 +1,22 @@
+Javascript
+
+새로운 것에 대한 공부 방법
+1. 정의(요약)
+2. 샘플 분석
+3. 코딩 연습
+
+1. 선언문 : var, let, const
+    Scope 구분..
+    var : 함수단위 Scope, 중복 선언 및 재할당 가능
+    let : 블록단위 Scope, 재할당은 가능하나 중복 선언은 불가능
+    const : 상수, 중복 선언 및 재할당 불가능
+
+2. 연산자 : ==, ===
+    == : 값만 같으면 true
+    === : 자료형까지 같아야 true
+
+
+HTML → JS
+document.getElementBy.. Id, ClassName, Name, TagName 등
+HTML 선택자에 따라 가져오는 값이 달라질 수 있다.
+
