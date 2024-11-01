@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Javascript Test</h1>
+    <h3>JS 정리 순서</h3>
+    <ul>
+        <li>선언 키워드 : var, let, const</li>
+        <li>연산자 : 비교연산자 중 ==, ===</li>
+        <li>html tag의 DOM</li>
+        <li>자바스크립트에서 html 객체 가져오기</li>
+        <li>객체 동적 컨트롤하기</li>
+    </ul>
+    <form action="goServer" method="get">
+        <input type="text" id="id"><br>
+        <input type="text" id="name"><br>
+        <input type="submit" value="전송">
+        <input type="button" value="클릭" onclick="test()">
+    </form>
+</body>
+</html>
+<script>
+    // Java에서의 메서드 느낌(public void test())
+    // JS에서는 function으로 함수라고 정의한다.
+    function test() {
+        // 정의 : 매개변수 고려, 리턴값은 정의하지 않는다.
+        alert("클릭됨");
+        var id = document.getElementById("id").value;           // 선택자 id로 가져오기
+        var name = document.querySelector("#name").value;       // 선택자로 가져오기(#, ., 태그명)
+        var h1 = document.getElementsByTagName("h1")[0];
+        h1.style.color = "skyblue";
+        h1.innerText = id + name;
+    }
+</script>
