@@ -222,7 +222,7 @@
               <button class="cart__list__optionbtn">선택상품 찜</button>
             </td>
             <td></td>
-            <td style="text-align: center;"> 선택상품금액   <span id="allGoods"></span> + 총 배송비   <span id="allDlv"></span></td>
+            <td style="text-align: center;"> 선택상품금액   <span id="allGoods">0</span>원 + 총 배송비   <span id="allDlv">0</span>원</td>
             <td style="text-align: center; color: limegreen; border-left: 1px lightgray solid;"> 주문금액 <br><span id="allPri">0</span>원</td>
           </tr>
         </tfoot>
@@ -276,6 +276,7 @@
     
     // table > form > tbody > tr > td > input
     // tr class=cart__list__detail
+    // 체크박스 : td > input
     // 상품정보 : td > input id=goodsInfo
     // 옵션 : td class=cart__list__option > input id=goodsCnt
     // 상품금액 : td > span class=price > input id=goodsPrice
@@ -284,11 +285,13 @@
     // 추가하려는 위치
     // table > form > tbody
     // tbody id=cart__list > tbody id=cart__list
+    let cartList = document.getElementById("cart__list");
+    // console.log(cartList);
 
     // 주문금액 표시 : 각 물품들의 ((옵션(수량)*상품금액)+배송비) 총 합
     // table > form > tfoot > tr > td > span
     // span id=allPri
-
+    
     // 비어있는 장바구니
     // table > form > thead > tr > td
     // tr id=hidden > td
@@ -317,7 +320,7 @@
             confirm("미입력된 정보가 존재합니다.\n확인 후 다시 주문해주세요.")
             return;
         }
-        let cartList = document.getElementById("cart__list");
+        // let cartList = document.getElementById("cart__list");
         // console.log(cartList);
         let newOrder = cartList.insertRow();
         newOrder.setAttribute("class", "cart__list__detail");
@@ -347,7 +350,7 @@
 
     // 장바구니 물품 삭제
     function delRow() {
-        let cartList = document.getElementById("cart__list");
+        // let cartList = document.getElementById("cart__list");
         // alert("삭제 버튼 클릭");
         // console.log(cartList.rows);
         // alert(cartList.rows.length);
@@ -376,7 +379,7 @@
     function allChk1(check) {
         // console.log(check);
         // console.log(check.checked);
-        let cartList = document.getElementById("cart__list");
+        // let cartList = document.getElementById("cart__list");
         if (check.checked == true) {
             for (let i=0; i<cartList.rows.length; i++) {
                 cartList.rows[i].cells[0].children[0].checked = true;
@@ -388,9 +391,9 @@
         }
     }
 
-    // 물품 금액 자동 계산
+    // 장바구니 전체 물품 금액 자동 계산
     function autoSell() {
-        let cartList = document.getElementById("cart__list");
+        // let cartList = document.getElementById("cart__list");
         let allPrice = document.getElementById("allPri");
         let price = 0;
         for (let i=0; i<cartList.rows.length; i++) {
@@ -402,7 +405,7 @@
             let gDlv = parseInt(cartList.rows[i].cells[4].innerText);                 // 배송비
             // console.log(gCnt + " / " + gPrice + " / " + gDlv);
             // 선택상품금액 + 총 배송비
-            price += (gCnt*gPrice) + gDlv;
+            price += (gCnt * gPrice) + gDlv;
             // console.log(price);
         }
         if (price == 0) {
@@ -411,7 +414,39 @@
             allPrice.innerText = price;
         }
     }
-    
+    /*
+    // 선택 물품 금액 자동 계산
+    function autoSell() {
+        let selectGoodsPrice = document.getElementById("allGoods");
+        let selectAllDlv = document.getElementById("allDlv");
+        let allPrice = document.getElementById("allPri");
+
+        let selectGP = 0;
+        let selectAD = 0;
+        let allP = 0;
+
+        for (let i=0; i<cartList.rows.length; i++) {
+            if (cartList.rows[i].cells[0].children[0].checked = true) {
+                let gCnt = parseInt(cartList.rows[i].cells[2].innerText);                 // 옵션(수량)
+                let gPrice = parseInt(cartList.rows[i].cells[3].children[0].innerText);   // 상품금액
+                let gDlv = parseInt(cartList.rows[i].cells[4].innerText);                 // 배송비
+
+                selectGP += (gCnt * gPrice);
+                selectAD += gDlv;
+                allP += (selectGP + selectAD);
+            }
+        }
+        if (price == 0) {
+            selectGoodsPrice.innerText = 0;
+            selectAllDlv.innerText = 0;
+            allPrice.innerText = 0;
+        } else {
+            selectGoodsPrice.innerText = selectGP;
+            selectAllDlv.innerText = selectAD;
+            allPrice.innerText = allP;
+        }
+    }
+    */
 </script>
 
 </html>
