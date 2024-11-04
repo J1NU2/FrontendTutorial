@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>장바구니</title>
+  <style>
+    body {
+      margin: 0;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    p,
+    span {
+      margin: 0;
+    }
+
+    a {
+      color: black;
+    }
+
+    img {
+      display: block;
+      width: 80%;
+      height: 80px;
+      margin: auto;
+    }
+
+    .cart {
+      width: 80%;
+      margin: auto;
+      padding: 30px;
+    }
+
+    .cart ul {
+      background-color: whitesmoke;
+      padding: 30px;
+      margin-bottom: 50px;
+      border: whitesmoke solid 1px;
+      border-radius: 5px;
+      font-size: 13px;
+      font-weight: 300;
+    }
+
+    .cart ul :first-child {
+      color: limegreen;
+    }
+
+    table {
+      border-top: solid 1.5px black;
+      border-collapse: collapse;
+      width: 100%;
+      font-size: 14px;
+    }
+
+    thead {
+      text-align: center;
+      font-weight: bold;
+    }
+
+    tbody {
+      font-size: 12px;
+      text-align: center;
+    }
+
+    td {
+      padding: 15px 0px;
+      border-bottom: 1px solid lightgrey;
+    }
+
+    .cart__list__detail :nth-child(3) {
+      vertical-align: top;
+    }
+
+    .cart__list__detail :nth-child(3) a {
+      font-size: 12px;
+    }
+
+    .cart__list__detail :nth-child(3) p {
+      margin-top: 6px;
+      font-weight: bold;
+    }
+
+    .cart__list__smartstore {
+      font-size: 12px;
+      color: gray;
+    }
+
+    .cart__list__option {
+      vertical-align: top;
+      padding: 20px;
+    }
+
+    .cart__list__option p {
+      margin-bottom: 25px;
+      position: relative;
+    }
+
+    .cart__list__option p::after {
+      content: "";
+      width: 90%;
+      height: 1px;
+      background-color: lightgrey;
+      left: 0px;
+      top: 25px;
+      position: absolute;
+    }
+
+    .cart__list__optionbtn {
+      background-color: white;
+      font-size: 10px;
+      border: lightgrey solid 1px;
+      padding: 7px;
+    }
+
+    .cart__list__detail :nth-child(4),
+    .cart__list__detail :nth-child(5),
+    .cart__list__detail :nth-child(6) {
+      border-left: 2px solid whitesmoke;
+    }
+
+    .cart__list__detail :nth-child(5),
+    .cart__list__detail :nth-child(6) {
+      text-align: center;
+    }
+
+    .cart__list__detail :nth-child(5) button {
+      background-color: limegreen;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      padding: 4px 8px;
+      font-size: 12px;
+      margin-top: 5px;
+    }
+
+    .price {
+      font-weight: bold;
+    }
+
+    .cart__mainbtns {
+      width: 420px;
+      height: 200px;
+      padding-top: 40px;
+      display: block;
+      margin: auto;
+    }
+
+    .cart__bigorderbtn {
+      width: 200px;
+      height: 50px;
+      font-size: 16px;
+      margin: auto;
+      border-radius: 5px;
+    }
+
+    .cart__bigorderbtn.left {
+      background-color: white;
+      border: 1px lightgray solid;
+    }
+
+    .cart__bigorderbtn.right {
+      background-color: limegreen;
+      color: white;
+      border: none;
+    }
+
+    input[type=number]::-webkit-inner-spin-button {
+      opacity: 1
+    }
+  </style>
+</head>
+
+<body>
+  <section class="cart">
+    <div class="cart__information">
+      <ul>
+        <li>장바구니 상품은 최대 30일간 저장됩니다.</li>
+        <li>가격, 옵션 등 정보가 변경된 경우 주문이 불가할 수 있습니다.</li>
+        <li>오늘출발 상품은 판매자 설정 시점에 따라 오늘출발 여부가 변경될 수 있으니 주문 시 꼭 다시 확인해 주시기 바랍니다.</li>
+      </ul>
+    </div>
+    <table class="cart__list">
+      <form>
+        <thead>
+          <tr>
+            <td><input type="checkbox" id="allChk" onchange="allChk1(this)"></td>
+            <td>상품정보</td>
+            <td>옵션</td>
+            <td>상품금액</td>
+            <td>배송비</td>
+          </tr>
+          <tr id="hidden">
+            <td colspan="5"> 장바구니가 비어있습니다. 물건을 주문해주세요.</td>
+          </tr>
+        </thead>
+        <tbody id="cart__list">
+          <!-- <tr class="cart__list__detail">
+            <td><input type="checkbox"></td>
+            <td>상품정보</td>
+            <td class="cart__list__option">옵션수량</td>
+            <td><span class="price">1000</span>원<br></td>
+            <td>배송비</td>
+          </tr> -->
+          <!-- <tr class="cart__list__detail">
+            <td style="width: 2%;"><input type="checkbox"></td>
+            <td style="width: 40%;">상품정보</td>
+            <td class="cart__list__option" style="width: 27%;">옵션수량</td>
+            <td style="width: 15%;"><span class="price">1000</span>원<br></td>
+            <td style="width: 15%;">배송비</td>
+          </tr> -->
+        </tbody>
+        <tfoot>
+          <tr>
+            <td colspan="2"><input type="checkbox"> <input type="button" class="cart__list__optionbtn"
+                onclick="delRow()" value="선택상품삭제">
+              <button class="cart__list__optionbtn">선택상품 찜</button>
+            </td>
+            <td></td>
+            <td style="text-align: center;"> 선택상품금액   <span id="allGoods"></span> + 총 배송비   <span id="allDlv"></span></td>
+            <td style="text-align: center; color: limegreen; border-left: 1px lightgray solid;"> 주문금액 <br><span id="allPri">0</span>원</td>
+          </tr>
+        </tfoot>
+      </form>
+    </table>
+
+    <table class="buyGoods">
+      <form>
+        <thead>
+          <tr>
+            <td>상품정보</td>
+            <td>옵션</td>
+            <td>상품금액</td>
+            <td>배송비</td>
+          </tr>          
+        </thead>
+        <tbody>
+          <tr class="cart__list__detail">
+
+            <td style="width: 40%;"><input type="text" id="goodsInfo" size="40"></td>
+            <td class="cart__list__option" style="width: 27%;">
+              상품 주문 수량<input type="number" id="goodsCnt" min="1" value="1" style="width: 40px;">개
+            </td>
+            <td style="width: 15%;"><span class="price"><input type="text" id="goodsPrice" size="10">원</span>
+            </td>
+            <td style="width: 15%;"><input type="text" id="goodsDlv" size="10"></td>
+          </tr>
+
+        </tbody>
+
+      </form>
+    </table>
+    <div class="cart__mainbtns">
+      <button class="cart__bigorderbtn left">쇼핑 계속하기</button>
+      <button class="cart__bigorderbtn right" id="addGoods">주문하기</button>
+    </div>
+  </section>
+</body>
+
+<script>
+    // 14_장바구니_base.txt에 있는 코드에서 상품정보를 입력한다.
+    // 이후 주문하기를 누르면 해당 상품의 입력된 정보가 장바구니에 등록되도록 만드시오.
+    // 기능
+    // 1. 장바구니 상품 등록
+    // 2. 수량조절 가능하게 하기
+    // 3. 상품리스트에서 선택 삭제 가능 (다중 선택 삭제도 가능)
+    // 4. 상품리스트에 올라가면 자동으로 계산하기
+    // +추가 : 장바구니에 등록된 상품이 있으면 다음 텍스트 숨기기
+    //  → <td colspan="5"> 장바구니가 비어있습니다. 물건을 주문해주세요.</td>
+    // +추가 : 다중 선택 후 삭제 시 다중 선택 체크박스 자동으로 체크 해제하기
+    
+    // table > form > tbody > tr > td > input
+    // tr class=cart__list__detail
+    // 상품정보 : td > input id=goodsInfo
+    // 옵션 : td class=cart__list__option > input id=goodsCnt
+    // 상품금액 : td > span class=price > input id=goodsPrice
+    // 배송비 : td > input id=goodsDlv
+
+    // 추가하려는 위치
+    // table > form > tbody
+    // tbody id=cart__list > tbody id=cart__list
+
+    // 주문금액 표시 : 각 물품들의 ((옵션(수량)*상품금액)+배송비) 총 합
+    // table > form > tfoot > tr > td > span
+    // span id=allPri
+
+    // 비어있는 장바구니
+    // table > form > thead > tr > td
+    // tr id=hidden > td
+    let cartEmpty = document.getElementById("hidden");
+    // console.log(cartEmpty);
+
+    // 장바구니 등록
+    document.getElementById("addGoods").addEventListener("click", () => {
+        let goodsInfo = document.getElementById("goodsInfo").value;
+        let goodsCnt = document.getElementById("goodsCnt").value;
+        let goodsPrice = document.getElementById("goodsPrice").value;
+        let goodsDlv = document.getElementById("goodsDlv").value;
+        // confirm(goodsInfo + "\n" + goodsCnt + "\n" + goodsPrice + "\n" + goodsDlv);
+        // confirm(goodsInfo.length + "\n" + goodsCnt + "\n" + goodsPrice.length + "\n" + goodsDlv.length);
+        // if (goodsInfo.length == 0) {
+        //     confirm("상품정보를 입력해주세요.");
+        //     return;
+        // } else if (goodsPrice.length == 0) {
+        //     confirm("상품금액을 입력해주세요.")
+        //     return;
+        // } else if (goodsDlv.length == 0) {
+        //     confirm("배송비를 입력해주세요.")
+        //     return;
+        // }
+        if (goodsInfo.length == 0 || goodsPrice.length == 0 || goodsDlv.length == 0) {
+            confirm("미입력된 정보가 존재합니다.\n확인 후 다시 주문해주세요.")
+            return;
+        }
+        let cartList = document.getElementById("cart__list");
+        // console.log(cartList);
+        let newOrder = cartList.insertRow();
+        newOrder.setAttribute("class", "cart__list__detail");
+        // console.log(newOrder);
+        let gCheck = newOrder.insertCell(0)     // 체크박스
+        let gInfo = newOrder.insertCell(1);     // 상품정보
+        let gCnt = newOrder.insertCell(2);      // 옵션(수량)
+        let gPrice = newOrder.insertCell(3);    // 상품금액
+        let gDlv = newOrder.insertCell(4);      // 배송비
+        gCheck.setAttribute("style", "width: 2%;");
+        gCheck.innerHTML = "<input type=\"checkbox\">";
+        gInfo.setAttribute("style", "width: 40%;");
+        gInfo.innerHTML = goodsInfo;
+        gCnt.setAttribute("class", "cart__list__option");
+        gCnt.setAttribute("style", "width: 27%;");
+        gCnt.innerHTML = goodsCnt;
+        gPrice.setAttribute("style", "width: 15%;");
+        gPrice.innerHTML = `<span class="price">${goodsPrice}</span>원<br>`;
+        gDlv.setAttribute("style", "width: 15%;");
+        gDlv.innerHTML = goodsDlv;
+
+        autoSell();
+
+        // 장바구니 물품 등록 시 비어있음을 알려주는 텍스트 숨기기
+        cartEmpty.style.display = "none";
+    });
+
+    // 장바구니 물품 삭제
+    function delRow() {
+        let cartList = document.getElementById("cart__list");
+        // alert("삭제 버튼 클릭");
+        // console.log(cartList.rows);
+        // alert(cartList.rows.length);
+        for (let i=0; i<cartList.rows.length; i++) {
+            // console.log(cartList.rows[i]);
+            // console.log(cartList.rows[i].cells[0])
+            // console.log(cartList.rows[i].cells[0].children[0])
+            if (cartList.rows[i].cells[0].children[0].checked) {
+                cartList.deleteRow(i);
+                i--;
+            }
+        }
+        // 다중 선택 후 삭제 시 다중 선택 체크박스 체크 해제
+        let allChk = document.getElementById("allChk");
+        allChk.checked = false;
+
+        autoSell();
+
+        // 장바구니 물품 삭제 시 모든 물품이 비어있다면?
+        // 비어있음을 알려주는 텍스트 보여주기
+        if (cartList.rows.length <= 0) {
+            cartEmpty.style.display = "";
+        }
+    }
+    // 장바구니 물품 삭제 시 다중 선택
+    function allChk1(check) {
+        // console.log(check);
+        // console.log(check.checked);
+        let cartList = document.getElementById("cart__list");
+        if (check.checked == true) {
+            for (let i=0; i<cartList.rows.length; i++) {
+                cartList.rows[i].cells[0].children[0].checked = true;
+            }
+        } else if (check.checked == false) {
+            for (let i=0; i<cartList.rows.length; i++) {
+                cartList.rows[i].cells[0].children[0].checked = false;
+            }
+        }
+    }
+
+    // 물품 금액 자동 계산
+    function autoSell() {
+        let cartList = document.getElementById("cart__list");
+        let allPrice = document.getElementById("allPri");
+        let price = 0;
+        for (let i=0; i<cartList.rows.length; i++) {
+            // console.log(cartList.rows[i].cells[2].innerText);
+            // console.log(cartList.rows[i].cells[3].children[0].innerText);
+            // console.log(cartList.rows[i].cells[4].innerText);
+            let gCnt = parseInt(cartList.rows[i].cells[2].innerText);                 // 옵션(수량)
+            let gPrice = parseInt(cartList.rows[i].cells[3].children[0].innerText);   // 상품금액
+            let gDlv = parseInt(cartList.rows[i].cells[4].innerText);                 // 배송비
+            // console.log(gCnt + " / " + gPrice + " / " + gDlv);
+            // 선택상품금액 + 총 배송비
+            price += (gCnt*gPrice) + gDlv;
+            // console.log(price);
+        }
+        if (price == 0) {
+            allPrice.innerText = 0;
+        } else {
+            allPrice.innerText = price;
+        }
+    }
+    
+</script>
+
+</html>
